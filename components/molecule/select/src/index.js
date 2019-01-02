@@ -26,9 +26,8 @@ class MoleculeSelect extends Component {
     const {children, multiselection, onEnterKey} = this.props // eslint-disable-line react/prop-types
     return React.Children.toArray(children)
       .filter(Boolean)
-      .map((child, index) => {
+      .map(child => {
         return React.cloneElement(child, {
-          ref: index,
           onEnterKey: onEnterKey || (multiselection ? ' ' : 'Enter')
         })
       })
@@ -54,12 +53,11 @@ class MoleculeSelect extends Component {
       refMoleculeSelect
     } = this
     
-    const options = Object.values(this.refs).map(ref =>
-      ReactDOM.findDOMNode(ref)
-    )
-
     const domSourceEvent = ev.target
     const domMoleculeSelect = refMoleculeSelect.current
+
+    const options = Array.from(domMoleculeSelect.querySelectorAll('.sui-MoleculeDropdownOption'))
+    
     if (ev.key === 'Enter') {
       if (domSourceEvent === domMoleculeSelect) {
         onToggle(ev, {})
