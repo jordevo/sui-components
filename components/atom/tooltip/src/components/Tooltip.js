@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react'
 import PropTypes from 'prop-types'
-
 import withIntersectionObserver from './hoc/withIntersectionObserver'
+
 import {withOpenToggle} from '@s-ui/hoc'
 
 const BASE_CLASS = 'sui-AtomTooltip'

@@ -60,6 +60,18 @@ const HtmlTooltipDecember = () => (
   </React.Fragment>
 )
 
+const HtmlPopoverDecember = () => (
+  <div>
+    <header>Title</header>
+    <main>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </main>
+    <footer>
+      <button>click me</button>
+    </footer>
+  </div>
+)
+
 return (
   <div style={{ padding: '20px' }}>
     <h1>AtomTooltip</h1>
@@ -85,6 +97,32 @@ return (
         </AtomTooltip>
       </p>
     </div>
+
+    <h2>Popover mode</h2>
+    <p>
+      We can also set HTML as content of the Tooltip by passing a React component to the prop <code>content</code> of <code>AtomTooltip</code>.
+    </p>
+    <small>
+      By default it will use the <code>title</code> of the wrapped element as
+      content of the tooltip
+    </small>
+    <div
+      style={{
+        border: '1px solid #CCC',
+        background: '#fff',
+        marginTop: '10px',
+        padding: '10px'
+      }}
+    >
+      <p>
+        Lorem ipsum dolor sit amet{' '}
+        <AtomTooltip content={ <HtmlPopoverDecember /> } popover autohide={false}>
+          <strong tabIndex="1">popover december</strong>
+        </AtomTooltip>
+      </p>
+    </div>
+
+
     <h2>HTML for content of the tooltip </h2>
     <p>
       We can also set HTML as content of the Tooltip by passing a React component to the prop <code>content</code> of <code>AtomTooltip</code>.
@@ -103,7 +141,7 @@ return (
     >
       <p>
         Lorem ipsum dolor sit amet{' '}
-        <AtomTooltip content={ HtmlTooltipDecember }>
+        <AtomTooltip content={ <HtmlTooltipDecember /> }>
           <strong tabIndex="1">december</strong>
         </AtomTooltip>
       </p>
