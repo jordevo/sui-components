@@ -1,8 +1,7 @@
 import React, {Component, Fragment} from 'react'
 import PropTypes from 'prop-types'
 
-import withIntersectionObserver from './hoc/withIntersectionObserver'
-import {withOpenToggle} from '@s-ui/hoc'
+import {withOpenToggle, withIntersectionObserver} from '@s-ui/hoc'
 
 const BASE_CLASS = 'sui-AtomTooltip'
 const CLASS_INNER = `${BASE_CLASS}-inner`
@@ -205,7 +204,6 @@ class AtomTooltip extends Component {
     }
     let {isVisible, isOpen} = this.props
     if (!isVisible && isOpen) isOpen = false
-
     return (
       <Fragment>
         {this.extendChildren()}
@@ -258,7 +256,7 @@ AtomTooltip.propTypes = {
   /** Tooltip and arrow position */
   placement: PropTypes.oneOf(Object.values(PLACEMENTS)),
 
-  /** True if the target is inside the viewport */
+  /** True if the target is inside the <v></v>iewport */
   isVisible: PropTypes.bool,
 
   /** True if the tooltip is displayed or not */
