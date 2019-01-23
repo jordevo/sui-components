@@ -41,10 +41,12 @@ const Demo = () => (
       <div className={CLASS_DEMO_DISPLAY}>
         <p>
           Lorem ipsum dolor sit amet{' '}
-          <AtomTooltip>
-            <u title="Last month of this year 2018" tabIndex="1">
-              december
-            </u>
+          <AtomTooltip
+            content={<HtmlPopoverDecember />}
+            popover
+            autohide={false}
+          >
+            <strong tabIndex="1">popover december</strong>
           </AtomTooltip>
         </p>
       </div>
@@ -62,24 +64,6 @@ const Demo = () => (
           <u title="Last month of this year 2018" tabIndex="1">
             december
           </u>
-        </AtomTooltip>
-      </p>
-    </div>
-
-    <h3>Popover mode</h3>
-    <p>
-      We can also set HTML as content of the Tooltip by passing a React
-      component to the prop <code>content</code> of <code>AtomTooltip</code>.
-    </p>
-    <small>
-      By default it will use the <code>title</code> of the wrapped element as
-      content of the tooltip
-    </small>
-    <div className={CLASS_DEMO_DISPLAY}>
-      <p>
-        Lorem ipsum dolor sit amet{' '}
-        <AtomTooltip content={<HtmlPopoverDecember />} popover autohide={false}>
-          <strong tabIndex="1">popover december</strong>
         </AtomTooltip>
       </p>
     </div>

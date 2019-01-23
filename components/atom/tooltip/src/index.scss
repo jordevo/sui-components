@@ -17,42 +17,21 @@ $pr-atom-tooltip: $p-m !default;
 $m-atom-tooltip: 0 !default;
 $z-atom-tooltip: 1070 !default;
 
-$miw-atom-tooltip-popover: 150px !default;
-$maw-atom-tooltip-popover: 480px !default;
-
 $w-atom-tooltip-arrow: .8rem !default;
 $h-atom-tooltip-arrow: .4rem !default;
 $c-atom-tooltip-arrow: $bgc-atom-tooltip !default;
 
 $base-class: '.sui-AtomTooltip';
-$class-inner: 'sui-AtomTooltip-inner';
-$class-inner-tooltip: '.#{$class-inner}-tooltip';
-$class-inner-popover: '.#{$class-inner}-popover';
+$class-inner: '#{$base-class}-inner';
 $class-arrow: '#{$base-class}-arrow';
 $class-target: '#{$base-class}-target';
 
-#{$class-target} {
+#{$class-target} {  
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
   user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
-}
-
-%#{$class-inner} {
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: $wlc-atom-tooltip;
-  background-color: $bgc-atom-tooltip;
-  border-color: $bgc-atom-tooltip;
-  border-radius: $bdrs-atom-tooltip;
-  border-style: solid;
-  border-width: $pt-atom-tooltip $pr-atom-tooltip;
-  color: $c-atom-tooltip;
-  display: -webkit-box;
-  line-height: $lh-atom-tooltip;
-  overflow: hidden;
-  text-align: left;
-  text-overflow: ellipsis;
 }
 
 #{$base-class} {
@@ -65,16 +44,22 @@ $class-target: '#{$base-class}-target';
   z-index: $z-atom-tooltip;
 
   // Wrapper for the tooltip content
-  #{$class-inner-tooltip} {
-    @extend %#{$class-inner};
+  #{$class-inner} {
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $wlc-atom-tooltip;
+    background-color: $bgc-atom-tooltip;
+    border-color: $bgc-atom-tooltip;
+    border-radius: $bdrs-atom-tooltip;
+    border-style: solid;
+    border-width: $pt-atom-tooltip $pr-atom-tooltip;
+    color: $c-atom-tooltip;
+    display: -webkit-box;
+    line-height: $lh-atom-tooltip;
     max-height: $mah-atom-tooltip;
     max-width: $maw-atom-tooltip;
-  }
-
-  #{$class-inner-popover} {
-    @extend %#{$class-inner};
-    max-width: $maw-atom-tooltip-popover;
-    min-width: $miw-atom-tooltip-popover;
+    overflow: hidden;
+    text-align: left;
+    text-overflow: ellipsis;
   }
 
   #{$class-arrow} {
@@ -183,4 +168,5 @@ $class-target: '#{$base-class}-target';
       @extend #{$base-class}--left;
     }
   }
+
 }
