@@ -16,16 +16,18 @@ class Tooltip extends Component {
   refTooltip = React.createRef()
   refTarget = React.createRef()
 
-  loadAsyncReacstrap(e) {
-    require.ensure(
-      [],
-      require => {
-        const Tooltip = require('reactstrap/lib/Tooltip').default
-        this.setState({Tooltip})
-        this.handleToggle(e)
-      },
-      'reactstrap-Tooltip'
-    )
+  loadAsyncReacstrap = ev => {
+    if (!this.state.Tooltip) {
+      require.ensure(
+        [],
+        require => {
+          const Tooltip = require('reactstrap/lib/Tooltip.js').default
+          this.setState({Tooltip})
+          this.handleToggle(ev)
+        },
+        'reactstrap-Tooltip'
+      )
+    }
   }
 
   extendChildren() {
@@ -52,9 +54,7 @@ class Tooltip extends Component {
     const target = this.refTarget.current
     this.props.innerRef(target) // eslint-disable-line react/prop-types
     ;['touchstart', 'mouseover'].forEach(event =>
-      target.addEventListener(event, e => {
-        if (!this.state.Tooltip) this.loadAsyncReacstrap(e)
-      })
+      target.addEventListener(event, this.loadAsyncReacstrap)
     )
     ;['click', 'touchend'].forEach(event =>
       window.addEventListener(event, this.handleClickOutsideElement)

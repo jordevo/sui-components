@@ -24,6 +24,7 @@ const PLACEMENTS = {
 class AtomTooltip extends Component {
   render() {
     const {popover, children, ...props} = this.props // eslint-disable-line
+    console.log(this.props)
     return popover ? (
       <Popover {...props}>{children}</Popover>
     ) : (

@@ -1,3 +1,5 @@
+@import '~@schibstedspain/sui-molecule-tabs/lib/index';
+
 %placement-item {
   display: flex;
   justify-content: space-around;
@@ -15,6 +17,10 @@
 %placement-item-vertical {
   @extend %placement-item;
   width: 100%;
+}
+
+.hidden {
+  display: none;
 }
 
 .DemoAtomTooltip {

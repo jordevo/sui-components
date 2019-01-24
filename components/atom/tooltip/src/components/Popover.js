@@ -1,23 +1,29 @@
 import React, {Component, Fragment} from 'react'
+// import {Popover, PopoverHeader, PopoverBody} from './reactstrap/src'
 
-const BASE_CLASS = 'sui-AtomTooltip'
+const BASE_CLASS = 'sui-AtomTooltip-popover'
 const CLASS_INNER = `${BASE_CLASS}-inner`
 const CLASS_ARROW = `${BASE_CLASS}-arrow`
 const PREFIX_PLACEMENT = `${BASE_CLASS}-`
 const CLASS_TARGET = `${BASE_CLASS}-target`
 
-class Popover extends Component {
-  state = {Popover: null}
+class _Popover extends Component {
+  state = {Popover: null, PopoverHeader: null, PopoverBody: null}
   refTarget = React.createRef()
   refPopover = React.createRef()
 
-  loadAsyncReacstrap(ev) {
+  loadAsyncReacstrap = ev => {
     if (!this.state.Popover) {
       require.ensure(
         [],
         require => {
-          const Popover = require('reactstrap/lib/Popover').default
-          this.setState({Popover})
+          const Popover = require('reactstrap/lib/Popover.js').default
+          const PopoverHeader = require('reactstrap/lib/PopoverHeader.js')
+            .default
+          const PopoverBody = require('reactstrap/lib/PopoverBody.js').default
+          this.setState({Popover, PopoverHeader, PopoverBody}, () => {
+            console.log('Popover lib loaded!')
+          })
         },
         'reactstrap-Popover'
       )
@@ -60,8 +66,10 @@ class Popover extends Component {
 
   handleToggle = ev => {
     /* eslint-disable */
+    const {onToggle} = this.props
     console.log('Popover:handleToggle')
-    console.log(ev)
+    //console.log(ev)
+    onToggle()
   }
 
   render() {
@@ -74,7 +82,7 @@ class Popover extends Component {
       placement
     } = this.props
 
-    const {Popover} = this.state
+   const {Popover, PopoverHeader, PopoverBody} = this.state
     const {
       extendedChildren,
       refPopover,
@@ -90,6 +98,9 @@ class Popover extends Component {
     let {isVisible, isOpen} = this.props
     if (!isVisible && isOpen) isOpen = false
 
+    console.log({isOpen, target, Popover, PopoverHeader, PopoverBody})
+    
+    /* Don't forget to add the Popover && */
     return (
       <Fragment>
         {extendedChildren}
@@ -106,14 +117,18 @@ class Popover extends Component {
               innerRef={refPopover}
               offset="auto,4px"
             >
-              {HtmlContent || this.title}
-            </Popover>
-          )}
+            <PopoverHeader>Popover Title</PopoverHeader>
+            <PopoverBody>
+              Sed posuere consectetur est at lobortis. Aenean eu leo quam.
+              Pellentesque ornare sem lacinia quam venenatis vestibulum.
+            </PopoverBody>
+          </Popover>
+        )}
       </Fragment>
     )
   }
 }
 
-Popover.displayName = 'Popover'
+_Popover.displayName = 'Popover'
 
-export default Popover
+export default _Popover
