@@ -17,10 +17,10 @@ class _Popover extends Component {
       require.ensure(
         [],
         require => {
-          const Popover = require('reactstrap/lib/Popover.js').default
-          const PopoverHeader = require('reactstrap/lib/PopoverHeader.js')
+          const Popover = require('./reactstrap/src/Popover.js').default
+          const PopoverHeader = require('./reactstrap/src/PopoverHeader.js')
             .default
-          const PopoverBody = require('reactstrap/lib/PopoverBody.js').default
+          const PopoverBody = require('./reactstrap/src/PopoverBody.js').default
           this.setState({Popover, PopoverHeader, PopoverBody}, () => {
             console.log('Popover lib loaded!')
           })
