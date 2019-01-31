@@ -1,5 +1,4 @@
 import React, {Component, Fragment} from 'react'
-// import {Popover, PopoverHeader, PopoverBody} from './reactstrap/src'
 
 const BASE_CLASS = 'sui-AtomTooltip-popover'
 const CLASS_INNER = `${BASE_CLASS}-inner`
@@ -17,10 +16,10 @@ class _Popover extends Component {
       require.ensure(
         [],
         require => {
-          const Popover = require('./reactstrap/src/Popover.js').default
-          const PopoverHeader = require('./reactstrap/src/PopoverHeader.js')
+          const Popover = require('reactstrap/lib/Popover.js').default
+          const PopoverHeader = require('reactstrap/lib/PopoverHeader.js')
             .default
-          const PopoverBody = require('./reactstrap/src/PopoverBody.js').default
+          const PopoverBody = require('reactstrap/lib/PopoverBody.js').default
           this.setState({Popover, PopoverHeader, PopoverBody}, () => {
             console.log('Popover lib loaded!')
           })
@@ -58,7 +57,6 @@ class _Popover extends Component {
 
   componentWillUnmount() {
     const target = this.refTarget.current
-    clearTimeout(this.touchTimer)
     ;['touchstart', 'mouseover'].forEach(event =>
       target.removeEventListener(event, this.loadAsyncReacstrap)
     )
@@ -98,7 +96,8 @@ class _Popover extends Component {
     let {isVisible, isOpen} = this.props
     if (!isVisible && isOpen) isOpen = false
 
-    console.log({isOpen, target, Popover, PopoverHeader, PopoverBody})
+    // console.log({isOpen, target, Popover, PopoverHeader, PopoverBody})
+    // console.log(extendedChildren)
     
     /* Don't forget to add the Popover && */
     return (
