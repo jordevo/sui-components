@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 
 import {withOpenToggle, withIntersectionObserver} from '@s-ui/hoc'
 
-import Tooltip from './components/Tooltip'
-import Popover from './components/Popover'
+import Tooltip from './components/Tooltip/'
+import Popover from './components/Popover/'
 
 const PLACEMENTS = {
   TOP: 'top',

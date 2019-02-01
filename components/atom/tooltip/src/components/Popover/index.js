@@ -120,7 +120,9 @@ class _Popover extends Component {
               offset="auto,4px"
               trigger="click"
             >
-              <PopoverHeader>Popover Title</PopoverHeader>
+              <PopoverHeader>
+                <span>Popover Title</span> <strong onClick={this.handleToggle}>[X]</strong>
+              </PopoverHeader>
               <PopoverBody>
                 Sed posuere consectetur est at lobortis. Aenean eu leo quam.
                 Pellentesque ornare sem lacinia quam venenatis vestibulum.
