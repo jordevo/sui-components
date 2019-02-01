@@ -7,7 +7,7 @@ const PREFIX_PLACEMENT = `${BASE_CLASS}-`
 const CLASS_TARGET = `${BASE_CLASS}-target`
 
 class _Popover extends Component {
-  state = {Popover: null, PopoverHeader: null, PopoverBody: null}
+  state = {UncontrolledPopover: null, PopoverHeader: null, PopoverBody: null}
   refTarget = React.createRef()
   refPopover = React.createRef()
 
@@ -16,13 +16,12 @@ class _Popover extends Component {
       require.ensure(
         [],
         require => {
-          const Popover = require('reactstrap/lib/Popover.js').default
+          const UncontrolledPopover = require('reactstrap/lib/UncontrolledPopover.js')
+            .default
           const PopoverHeader = require('reactstrap/lib/PopoverHeader.js')
             .default
           const PopoverBody = require('reactstrap/lib/PopoverBody.js').default
-          this.setState({Popover, PopoverHeader, PopoverBody}, () => {
-            console.log('Popover lib loaded!')
-          })
+          this.setState({UncontrolledPopover, PopoverHeader, PopoverBody})
         },
         'reactstrap-Popover'
       )
@@ -80,7 +79,7 @@ class _Popover extends Component {
       placement
     } = this.props
 
-   const {Popover, PopoverHeader, PopoverBody} = this.state
+    const {UncontrolledPopover, PopoverHeader, PopoverBody} = this.state
     const {
       extendedChildren,
       refPopover,
@@ -98,14 +97,18 @@ class _Popover extends Component {
 
     // console.log({isOpen, target, Popover, PopoverHeader, PopoverBody})
     // console.log(extendedChildren)
-    
+
     /* Don't forget to add the Popover && */
+    console.log({
+      refPopover,
+      target
+    })
     return (
       <Fragment>
         {extendedChildren}
         {target &&
-          Popover && (
-            <Popover
+          UncontrolledPopover && (
+            <UncontrolledPopover
               {...restrictedProps}
               isOpen={isOpen}
               toggle={this.handleToggle}
@@ -115,14 +118,15 @@ class _Popover extends Component {
               placementPrefix={PREFIX_PLACEMENT}
               innerRef={refPopover}
               offset="auto,4px"
+              trigger="click"
             >
-            <PopoverHeader>Popover Title</PopoverHeader>
-            <PopoverBody>
-              Sed posuere consectetur est at lobortis. Aenean eu leo quam.
-              Pellentesque ornare sem lacinia quam venenatis vestibulum.
-            </PopoverBody>
-          </Popover>
-        )}
+              <PopoverHeader>Popover Title</PopoverHeader>
+              <PopoverBody>
+                Sed posuere consectetur est at lobortis. Aenean eu leo quam.
+                Pellentesque ornare sem lacinia quam venenatis vestibulum.
+              </PopoverBody>
+            </UncontrolledPopover>
+          )}
       </Fragment>
     )
   }
