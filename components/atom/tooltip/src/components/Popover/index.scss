@@ -4,9 +4,14 @@ $class-popover: '#{$base-class}-popover';
 
 #{$class-popover} {
   #{$class-inner} {
+    font-size: $fz-atom-tooltip-popover;
     background-color: $bgc-atom-tooltip-popover;
     border-width: $bdw-atom-tooltip-popover;
     color: $c-atom-tooltip-popover;
+    padding: $p-atom-tooltip-popover;
+    min-width: $miw-atom-tooltip-popover;
+    max-width: $maw-atom-tooltip-popover;
+    max-height: inherit;
   }
 
   #{$class-arrow} {

@@ -21,10 +21,14 @@ $h-atom-tooltip-arrow: .4rem !default;
 $c-atom-tooltip-arrow: $bgc-atom-tooltip !default;
 
 /* popover */
+$fz-atom-tooltip-popover: $fz-s !default;
 $bdc-atom-tooltip-popover-arrow: #c8c8c8 !default;
 $c-atom-tooltip-popover: #535353 !default;
 $bgc-atom-tooltip-popover: $c-white !default;
 $bdw-atom-tooltip-popover: 1px !default;
+$p-atom-tooltip-popover: $p-l !default;
+$maw-atom-tooltip-popover: 480px !default;
+$miw-atom-tooltip-popover: 150px !default;
 
 /* class names */
 $base-class: '.sui-AtomTooltip';

@@ -75,7 +75,7 @@ class Popover extends Component {
     /* eslint-disable react/prop-types */
     const {
       hideArrow,
-      content: HtmlContent,
+      content,
       delay,
       autohide,
       placement
@@ -122,13 +122,7 @@ class Popover extends Component {
               offset="auto,4px"
               trigger="click"
             >
-              <PopoverHeader>
-                <span>Popover Title</span> <strong onClick={this.handleToggle}>[X]</strong>
-              </PopoverHeader>
-              <PopoverBody>
-                Sed posuere consectetur est at lobortis. Aenean eu leo quam.
-                Pellentesque ornare sem lacinia quam venenatis vestibulum.
-              </PopoverBody>
+              <PopoverBody>{content}</PopoverBody>
             </UncontrolledPopover>
           )}
       </Fragment>

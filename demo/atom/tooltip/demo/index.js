@@ -15,7 +15,8 @@ import {
   ContentOneLine,
   ContentTwoLines,
   ContentHelloWorld,
-  HtmlPopoverDecember
+  HtmlPopoverBody,
+  HtmlPopoverHeader
 } from './components'
 
 const BASE_CLASS_DEMO = 'DemoAtomTooltip'
@@ -44,12 +45,12 @@ const Demo = () => (
     <MoleculeTabs
       items={[{label: 'Tooltip', id: 'tooltipContainer'}, {label: 'Popover', id: 'popoverContainer'}]}
       handleChange={handleChange}
-      activeTab={0}
+      activeTab={1}
     />
 
-    <div id="popoverContainer" className="tabContainers hidden">
+    <div id="popoverContainer" className="tabContainers">
       <h2>Popover</h2>
-      <div className={CLASS_DEMO_SECTION} style={{height: '600px'}}>
+      <div className={CLASS_DEMO_SECTION} >
         <h3>Basic Usage</h3>
         <p>
           <code>AtomTooltip</code> will use the <code>title</code> (plain text)
@@ -59,8 +60,9 @@ const Demo = () => (
           <p>
             Lorem ipsum dolor sit amet{' '}
             <AtomTooltip
-              content={<HtmlPopoverDecember />}
-              placement={atomTooltipPlacements.RIGHT}
+              content={<HtmlPopoverBody />}
+              header={<HtmlPopoverHeader />}
+              placement={atomTooltipPlacements.BOTTOM}
               popover
             >
               <strong tabIndex="1">popover december</strong>
@@ -68,9 +70,125 @@ const Demo = () => (
           </p>
         </div>
       </div>
+
+      <h3>
+        Positioning popover with <code>placement</code>
+      </h3>
+      <div>
+        <div className={CLASS_DEMO_DISPLAY}>
+          <ul className={CLASS_DEMO_PLACEMENT}>
+            {/* --- top --- */}
+            <li className={CLASS_DEMO_PLACEMENT_TOP}>
+              <AtomTooltip
+                placement={atomTooltipPlacements.TOP_START}
+                content={<ContentOneLine text="top-start" />}
+                popover
+              >
+                <strong tabIndex="5">top-start</strong>
+              </AtomTooltip>
+
+              <AtomTooltip
+                placement={atomTooltipPlacements.TOP}
+                content={<ContentOneLine text="top" />}
+                popover
+              >
+                <strong tabIndex="6">top</strong>
+              </AtomTooltip>
+              <AtomTooltip
+                placement={atomTooltipPlacements.TOP_END}
+                content={<ContentOneLine text="top-end" />}
+                popover
+              >
+                <strong tabIndex="7">top-end</strong>
+              </AtomTooltip>
+            </li>
+
+            {/* --- right --- */}
+            <li className={CLASS_DEMO_PLACEMENT_RIGHT}>
+              <AtomTooltip
+                placement={atomTooltipPlacements.RIGHT_START}
+                content={<ContentTwoLines text="right-start" />}
+                popover
+              >
+                <strong tabIndex="8" style={{textAlign: 'right'}}>
+                  right-start
+                </strong>
+              </AtomTooltip>
+              <AtomTooltip
+                placement={atomTooltipPlacements.RIGHT}
+                content={<ContentTwoLines text="right" />}
+                popover
+              >
+                <strong tabIndex="9" style={{textAlign: 'right'}}>
+                  right
+                </strong>
+              </AtomTooltip>
+              <AtomTooltip
+                placement={atomTooltipPlacements.RIGHT_END}
+                content={<ContentTwoLines text="right-end" />}
+                popover
+              >
+                <strong tabIndex="10" style={{textAlign: 'right'}}>
+                  right-end
+                </strong>
+              </AtomTooltip>
+            </li>
+
+            {/* --- bottom --- */}
+            <li className={CLASS_DEMO_PLACEMENT_BOTTOM}>
+              <AtomTooltip
+                placement={atomTooltipPlacements.BOTTOM_START}
+                content={<ContentOneLine text="bottom-start" />}
+                popover
+              >
+                <strong tabIndex="11">bottom-start</strong>
+              </AtomTooltip>
+              <AtomTooltip
+                placement={atomTooltipPlacements.BOTTOM}
+                content={<ContentOneLine text="bottom" />}
+                popover
+              >
+                <strong tabIndex="12">bottom</strong>
+              </AtomTooltip>
+              <AtomTooltip
+                placement={atomTooltipPlacements.BOTTOM_END}
+                content={<ContentOneLine text="bottom-end" />}
+                popover
+              >
+                <strong tabIndex="13">bottom-end</strong>
+              </AtomTooltip>
+            </li>
+
+            {/* --- left --- */}
+            <li className={CLASS_DEMO_PLACEMENT_LEFT}>
+              <AtomTooltip
+                placement={atomTooltipPlacements.LEFT_START}
+                content={<ContentTwoLines text="left-start" />}
+                popover
+              >
+                <strong tabIndex="14">left-start</strong>
+              </AtomTooltip>
+              <AtomTooltip
+                placement={atomTooltipPlacements.LEFT}
+                content={<ContentTwoLines text="left" />}
+                popover
+              >
+                <strong tabIndex="15">left</strong>
+              </AtomTooltip>
+              <AtomTooltip
+                placement={atomTooltipPlacements.LEFT_END}
+                content={<ContentTwoLines text="left-end" />}
+                popover
+              >
+                <strong tabIndex="16">left-end</strong>
+              </AtomTooltip>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
 
-    <div id="tooltipContainer" className="tabContainers">
+    <div id="tooltipContainer" className="tabContainers hidden">
       <h2>Tooltip</h2>
       <h3>Basic Usage</h3>
       <p>

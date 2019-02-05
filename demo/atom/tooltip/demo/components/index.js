@@ -23,9 +23,15 @@ export const ContentHelloWorld = () => (
   </div>
 )
 
-export const HtmlPopoverDecember = () => (
+export const HtmlPopoverTitle = () => (
   <div>
     <header>Title</header>
+  </div>
+)
+
+
+export const HtmlPopoverBody = () => (
+  <div>
     <main>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -34,9 +40,9 @@ export const HtmlPopoverDecember = () => (
       velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
       est laborum.
+      <div>
+        <button>click me</button>
+      </div>
     </main>
-    <footer>
-      <button>click me</button>
-    </footer>
   </div>
 )
