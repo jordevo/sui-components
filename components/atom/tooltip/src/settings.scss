@@ -1,0 +1,33 @@
+/* tooltip */
+$fz-atom-tooltip: $fz-m !default;
+$lh-atom-tooltip: $lh-m !default;
+$wlc-atom-tooltip: 4 !default; // -webkit-line-clamp → lines to show
+
+$maw-atom-tooltip: 250px !default;
+$mah-atom-tooltip: 100px !default;
+$c-atom-tooltip: $c-white !default;
+$bgc-atom-tooltip: $c-black !default;
+$bdrs-atom-tooltip: $bdrs-l !default;
+$op-atom-tooltip: 1 !default;
+$pt-atom-tooltip: $p-m !default;
+$pb-atom-tooltip: $p-m !default;
+$pl-atom-tooltip: $p-m !default;
+$pr-atom-tooltip: $p-m !default;
+$m-atom-tooltip: 0 !default;
+$z-atom-tooltip: 1070 !default;
+
+$w-atom-tooltip-arrow: .8rem !default;
+$h-atom-tooltip-arrow: .4rem !default;
+$c-atom-tooltip-arrow: $bgc-atom-tooltip !default;
+
+/* popover */
+$bdc-atom-tooltip-popover-arrow: #c8c8c8 !default;
+$c-atom-tooltip-popover: #535353 !default;
+$bgc-atom-tooltip-popover: $c-white !default;
+$bdw-atom-tooltip-popover: 1px !default;
+
+/* class names */
+$base-class: '.sui-AtomTooltip';
+$class-inner: '#{$base-class}-inner';
+$class-arrow: '#{$base-class}-arrow';
+$class-target: '#{$base-class}-target';

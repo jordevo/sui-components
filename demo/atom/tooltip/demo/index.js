@@ -49,7 +49,7 @@ const Demo = () => (
 
     <div id="popoverContainer" className="tabContainers hidden">
       <h2>Popover</h2>
-      <div className={CLASS_DEMO_SECTION}>
+      <div className={CLASS_DEMO_SECTION} style={{height: '600px'}}>
         <h3>Basic Usage</h3>
         <p>
           <code>AtomTooltip</code> will use the <code>title</code> (plain text)
@@ -60,6 +60,7 @@ const Demo = () => (
             Lorem ipsum dolor sit amet{' '}
             <AtomTooltip
               content={<HtmlPopoverDecember />}
+              placement={atomTooltipPlacements.RIGHT}
               popover
             >
               <strong tabIndex="1">popover december</strong>

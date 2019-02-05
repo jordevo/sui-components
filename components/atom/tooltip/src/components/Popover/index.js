@@ -1,12 +1,14 @@
 import React, {Component, Fragment} from 'react'
+import cx from 'classnames'
 
-const BASE_CLASS = 'sui-AtomTooltip-popover'
+const BASE_CLASS = 'sui-AtomTooltip'
+const CLASS_POPOVER = `${BASE_CLASS}-popover`
 const CLASS_INNER = `${BASE_CLASS}-inner`
 const CLASS_ARROW = `${BASE_CLASS}-arrow`
 const PREFIX_PLACEMENT = `${BASE_CLASS}-`
 const CLASS_TARGET = `${BASE_CLASS}-target`
 
-class _Popover extends Component {
+class Popover extends Component {
   state = {UncontrolledPopover: null, PopoverHeader: null, PopoverBody: null}
   refTarget = React.createRef()
   refPopover = React.createRef()
@@ -112,7 +114,7 @@ class _Popover extends Component {
               {...restrictedProps}
               isOpen={isOpen}
               toggle={this.handleToggle}
-              className={BASE_CLASS}
+              className={cx(BASE_CLASS, CLASS_POPOVER)}
               innerClassName={CLASS_INNER}
               arrowClassName={CLASS_ARROW}
               placementPrefix={PREFIX_PLACEMENT}
@@ -134,6 +136,6 @@ class _Popover extends Component {
   }
 }
 
-_Popover.displayName = 'Popover'
+Popover.displayName = 'Popover'
 
-export default _Popover
+export default Popover

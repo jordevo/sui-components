@@ -1,0 +1,64 @@
+@import '../../settings';
+
+$class-popover: '#{$base-class}-popover';
+
+#{$class-popover} {
+  #{$class-inner} {
+    background-color: $bgc-atom-tooltip-popover;
+    border-width: $bdw-atom-tooltip-popover;
+    color: $c-atom-tooltip-popover;
+  }
+
+  #{$class-arrow} {
+
+    &::after {
+      border-color: transparent;
+      border-style: solid;
+      content: '';
+      position: absolute;
+    }
+  }
+
+  
+  &#{$base-class}--top {
+    #{$class-arrow} {
+      &::after {
+        border-top-color: $bgc-atom-tooltip-popover;
+        border-width: $h-atom-tooltip-arrow ($w-atom-tooltip-arrow / 2) 0;
+        top: -1px;
+      }
+    }
+  }
+
+  &#{$base-class}--right {
+    #{$class-arrow} {
+      &::after {
+        border-right-color: $bgc-atom-tooltip-popover;
+        border-width: ($w-atom-tooltip-arrow / 2) $h-atom-tooltip-arrow
+          ($w-atom-tooltip-arrow / 2) 0;
+        right: -1px;
+      }
+    }
+  }
+
+  &#{$base-class}--bottom {
+    #{$class-arrow} {
+      &::after {
+        border-bottom-color: $bgc-atom-tooltip-popover;
+        border-width: 0 ($w-atom-tooltip-arrow / 2) $h-atom-tooltip-arrow;
+        bottom: -1px;
+      }
+    }
+  }
+  
+  &#{$base-class}--left {
+    #{$class-arrow} {
+      &::after {
+        border-left-color: $bgc-atom-tooltip-popover;
+        border-width: ($w-atom-tooltip-arrow / 2) 0 ($w-atom-tooltip-arrow / 2)
+            $h-atom-tooltip-arrow;
+        left: -1px;
+      }
+    }
+  }
+}
