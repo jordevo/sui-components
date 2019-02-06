@@ -3,6 +3,8 @@ import cx from 'classnames'
 
 const BASE_CLASS = 'sui-AtomTooltip'
 const CLASS_POPOVER = `${BASE_CLASS}-popover`
+const CLASS_POPOVER_BODY = `${CLASS_POPOVER}-body`
+// const CLASS_POPOVER_HEADER = `${CLASS_POPOVER}-header`
 const CLASS_INNER = `${BASE_CLASS}-inner`
 const CLASS_ARROW = `${BASE_CLASS}-arrow`
 const PREFIX_PLACEMENT = `${BASE_CLASS}-`
@@ -122,7 +124,7 @@ class Popover extends Component {
               offset="auto,4px"
               trigger="click"
             >
-              <PopoverBody>{content}</PopoverBody>
+              <PopoverBody className={CLASS_POPOVER_BODY}>{content}</PopoverBody>
             </UncontrolledPopover>
           )}
       </Fragment>

@@ -1,6 +1,7 @@
 @import '../../settings';
 
 $class-popover: '#{$base-class}-popover';
+$class-popover-body: '#{$class-popover}-body';
 
 #{$class-popover} {
   #{$class-inner} {
@@ -14,8 +15,11 @@ $class-popover: '#{$base-class}-popover';
     max-height: inherit;
   }
 
-  #{$class-arrow} {
+  #{$class-popover-body} {
+    height: 100%;
+  }
 
+  #{$class-arrow} {
     &::after {
       border-color: transparent;
       border-style: solid;
