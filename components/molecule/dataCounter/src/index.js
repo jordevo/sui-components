@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 
@@ -13,77 +13,73 @@ const CLASS_INPUT_CONTAINER = `${BASE_CLASS}-container`
 
 const isCharDigit = char => /[0-9]/.test(char)
 
-const MoleculeDataCounter = ({
-  id,
-  label,
-  value,
-  errorText: errorTextProps,
-  size = inputSizes.MEDIUM,
-  charsSize = 2,
-  max = 99,
-  min = 1,
-  minValueHelpText,
-  minValueErrorText,
-  maxValueHelpText,
-  maxValueErrorText,
-  onChange,
-  disabled
-}) => {
-  if (value) value = String(value)
-  else if (min) value = String(min)
-  else value = '0'
+class MoleculeDataCounter extends Component {
+  state = {
+    internalValue: this.props.value || this.props.min || '0'
+  }
 
-  const [internalValue, setInternalValue] = useState(value)
+  incrementValue = e => {
+    const {internalValue} = this.state
+    const {min, max, onChange} = this.props
+    const numInternalValue = Number(internalValue)
+    const numMax = Number(max)
+    const isBelowMaxValue = numInternalValue < numMax
 
-  const numInternalValue = Number(internalValue)
-  const numMax = Number(max)
-  const numMin = Number(min)
-
-  const isBelowMaxValue = numInternalValue < numMax
-  const isOverMinValue = numInternalValue > numMin
-  const isMaxValue = numInternalValue === numMax
-  const isMinValue = numInternalValue === numMin
-  const isLowerThanMinValue = numInternalValue < numMin
-  const isHigherThanMaxValue = numInternalValue > numMax
-
-  const decrementDisabled = disabled || numInternalValue <= numMin
-  const incrementDisabled = disabled || numInternalValue >= numMax
-
-  const incrementValue = e => {
     if (isBelowMaxValue) {
       const newValue = internalValue === '' ? min : parseInt(internalValue) + 1
       const strNewValue = String(newValue)
-      setInternalValue(strNewValue)
-      onChange(e, {value: strNewValue})
+      this.setState({
+        internalValue: strNewValue
+      })
+      onChange(e, {value: newValue})
     }
   }
 
-  const decrementValue = e => {
+  decrementValue = e => {
+    const {internalValue} = this.state
+    const {min, onChange} = this.props
+    const numInternalValue = Number(internalValue)
+    const numMin = Number(min)
+    const isOverMinValue = numInternalValue > numMin
+
     if (isOverMinValue) {
       const newValue = internalValue === '' ? min : parseInt(internalValue) - 1
       const strNewValue = String(newValue)
-      setInternalValue(strNewValue)
-      onChange(e, {value: strNewValue})
+      this.setState({
+        internalValue: strNewValue
+      })
+      onChange(e, {value: newValue})
     }
   }
 
-  const removeDigit = e => {
+  removeDigit = e => {
+    const {internalValue} = this.state
+    const {onChange} = this.props
     if (internalValue.length) {
       const newValue = internalValue.slice(0, -1)
-      setInternalValue(newValue)
+      const strNewValue = String(newValue)
+      this.setState({
+        internalValue: strNewValue
+      })
       onChange(e, {value: newValue})
     }
   }
 
-  const addDigit = (e, {key: digit}) => {
+  addDigit = (e, {key: digit}) => {
+    const {internalValue} = this.state
+    const {onChange} = this.props
     const newValue = internalValue + digit
     if (newValue.length <= 2) {
-      setInternalValue(newValue)
+      const strNewValue = String(newValue)
+      this.setState({
+        internalValue: strNewValue
+      })
       onChange(e, {value: newValue})
     }
   }
 
-  const handleKeyDown = e => {
+  handleKeyDown = e => {
+    const {incrementValue, decrementValue, removeDigit, addDigit} = this
     const {key} = e
     if (key === 'ArrowUp') incrementValue(e)
     if (key === 'ArrowDown') decrementValue(e)
@@ -91,59 +87,93 @@ const MoleculeDataCounter = ({
     if (isCharDigit(key)) addDigit(e, {key})
   }
 
-  let helpText, errorText
-  if (!disabled) {
-    if (isMaxValue) helpText = maxValueHelpText
-    else if (isMinValue) helpText = minValueHelpText
-    else helpText = null
+  render() {
+    const {
+      id,
+      label,
+      errorText: errorTextProps,
+      size,
+      charsSize,
+      max,
+      min,
+      minValueHelpText,
+      minValueErrorText,
+      maxValueHelpText,
+      maxValueErrorText,
+      disabled
+    } = this.props
 
-    if (isLowerThanMinValue) errorText = minValueErrorText
-    else if (isHigherThanMaxValue) errorText = maxValueErrorText
-    else if (errorTextProps) errorText = errorTextProps
-    else errorText = null
-  }
+    const {internalValue} = this.state
+    const {incrementValue, decrementValue, handleKeyDown} = this
 
-  return (
-    <div className={BASE_CLASS}>
-      <MoleculeField
-        name={id}
-        label={label}
-        helpText={helpText}
-        errorText={errorText}
-      >
-        <div
-          className={cx(
-            CLASS_INPUT_CONTAINER,
-            `${CLASS_INPUT_CONTAINER}--${size}`
-          )}
+    const numInternalValue = Number(internalValue)
+    const numMin = Number(min)
+    const numMax = Number(max)
+
+    const isMaxValue = numInternalValue === numMax
+    const isMinValue = numInternalValue === numMin
+    const isLowerThanMinValue = numInternalValue < numMin
+    const isHigherThanMaxValue = numInternalValue > numMax
+
+    const decrementDisabled = disabled || numInternalValue <= numMin
+    const incrementDisabled = disabled || numInternalValue >= numMax
+
+    const inputValue = String(internalValue)
+
+    let helpText, errorText
+    if (!disabled) {
+      if (isMaxValue) helpText = maxValueHelpText
+      else if (isMinValue) helpText = minValueHelpText
+      else helpText = null
+
+      if (isLowerThanMinValue) errorText = minValueErrorText
+      else if (isHigherThanMaxValue) errorText = maxValueErrorText
+      else if (errorTextProps) errorText = errorTextProps
+      else errorText = null
+    }
+
+    return (
+      <div className={BASE_CLASS}>
+        <MoleculeField
+          name={id}
+          label={label}
+          helpText={helpText}
+          errorText={errorText}
         >
-          <AtomButton
-            disabled={decrementDisabled}
-            onClick={decrementValue}
-            type={BUTTON_TYPE}
+          <div
+            className={cx(
+              CLASS_INPUT_CONTAINER,
+              `${CLASS_INPUT_CONTAINER}--${size}`
+            )}
           >
-            -
-          </AtomButton>
-          <AtomInput
-            id={id}
-            disabled={disabled}
-            size={size}
-            charsSize={charsSize}
-            value={internalValue}
-            onKeyDown={handleKeyDown}
-            onChange={handleKeyDown}
-          />
-          <AtomButton
-            disabled={incrementDisabled}
-            onClick={incrementValue}
-            type="secondary"
-          >
-            +
-          </AtomButton>
-        </div>
-      </MoleculeField>
-    </div>
-  )
+            <AtomButton
+              disabled={decrementDisabled}
+              onClick={decrementValue}
+              type={BUTTON_TYPE}
+            >
+              -
+            </AtomButton>
+            <AtomInput
+              id={id}
+              disabled={disabled}
+              size={size}
+              charsSize={charsSize}
+              value={inputValue}
+              onKeyDown={handleKeyDown}
+              onChange={handleKeyDown}
+            />
+            <AtomButton
+              disabled={incrementDisabled}
+              onClick={incrementValue}
+              type="secondary"
+            >
+              +
+            </AtomButton>
+          </div>
+        </MoleculeField>
+      </div>
+    )
+  }
 }
 
 MoleculeDataCounter.displayName = 'MoleculeDataCounter'
@@ -156,7 +186,7 @@ MoleculeDataCounter.propTypes = {
   id: PropTypes.string.isRequired,
 
   /** width of input based in number of characters (native "size" attribute) */
-  charsSize: PropTypes.number.isRequired,
+  charsSize: PropTypes.number,
 
   /** text to display in case of error */
   errorText: PropTypes.string,
@@ -165,10 +195,10 @@ MoleculeDataCounter.propTypes = {
   value: PropTypes.number.isRequired,
 
   /** max value allowed */
-  max: PropTypes.number.isRequired,
+  max: PropTypes.number,
 
   /** min value allowed */
-  min: PropTypes.number.isRequired,
+  min: PropTypes.number,
 
   /* callback to be called with every update of the input value */
   onChange: PropTypes.func,
@@ -190,6 +220,13 @@ MoleculeDataCounter.propTypes = {
 
   /** 's' or 'm', default: 'm' */
   size: PropTypes.oneOf(Object.values(inputSizes))
+}
+
+MoleculeDataCounter.defaultProps = {
+  size: inputSizes.MEDIUM,
+  charsSize: 2,
+  max: 99,
+  min: 1
 }
 
 export default MoleculeDataCounter
