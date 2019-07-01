@@ -158,13 +158,14 @@ $bxsh-atom-button-solid-primary-negative: none !default;
 
   // Types and colors
   @each $name, $pair in $c-atom-button-types {
+    // sass-lint:disable-block no-duplicate-properties
     &--#{$name} {
       $color: nth($pair, 1);
       $color-invert: nth($pair, 2);
-      --COLOR: #{$color};
-      --COLOR-INVERT: #{$color-invert};
-      --COLOR-DARK: #{color-variation($color, -1)};
-      --COLOR-LIGHT: #{color-variation($color, 4)};
+      #{--COLOR}: #{$color};
+      #{--COLOR-INVERT}: #{$color-invert};
+      #{--COLOR-DARK}: #{color-variation($color, -1)};
+      #{--COLOR-LIGHT}: #{color-variation($color, 4)};
     }
   }
 
