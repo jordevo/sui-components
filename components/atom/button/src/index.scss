@@ -61,6 +61,7 @@ $bxsh-atom-button-solid-primary-negative: none !default;
     stroke: $color;
   }
 }
+
 // Sets active states when button is not disabled
 @mixin button-focused {
   &:not(#{$base-class}--disabled) {
@@ -71,6 +72,7 @@ $bxsh-atom-button-solid-primary-negative: none !default;
     }
   }
 }
+
 @mixin button-icon($size, $margin) {
   & #{$base-class}-leftIcon,
   & #{$base-class}-rightIcon {
@@ -90,7 +92,7 @@ $bxsh-atom-button-solid-primary-negative: none !default;
   }
 }
 
-#{$base-class}  {
+#{$base-class} {
   @include reset-button;
   @include button-icon($icon-sz-atom-button, $icon-m-atom-button);
   border: 1px solid;
@@ -155,56 +157,61 @@ $bxsh-atom-button-solid-primary-negative: none !default;
   }
 
   // Types and colors
-
   @each $name, $pair in $c-atom-button-types {
-    $color: nth($pair, 1);
-    $color-invert: nth($pair, 2);
-
     &--#{$name} {
-      &#{$base-class}--solid {
-        @include button-foreground-color($color-invert);
-        @include button-focused {
-          background-color: color-variation($color, -1);
-          border-color: color-variation($color, -1);
-        }
-        background-color: $color;
-        border-color: $color;
-
-        &#{$base-class}--negative {
-          @include button-foreground-color($color);
-          @include button-focused {
-            background-color: color-variation($color, 4);
-            border-color: color-variation($color, 4);
-          }
-          background-color: $color-invert;
-          border-color: $color-invert;
-        }
-      }
-
-      &#{$base-class}--outline, 
-      &#{$base-class}--flat {
-        @include button-foreground-color($color);
-        @include button-focused {
-          background-color: color-variation($color, 4);
-        }
-        background: none;
-        border-color: $color;
-
-        &#{$base-class}--negative {
-          @include button-foreground-color($color-invert);
-          @include button-focused {
-            background-color: color-variation($color, -1);
-          }
-          background-color: none;
-          border-color: $color-invert;
-        }
-      }
-
-      &#{$base-class}--flat {
-        border: 0;
-      }
+      $color: nth($pair, 1);
+      $color-invert: nth($pair, 2);
+      --COLOR: #{$color};
+      --COLOR-INVERT: #{$color-invert};
+      --COLOR-DARK: #{color-variation($color, -1)};
+      --COLOR-LIGHT: #{color-variation($color, 4)};
     }
   }
+
+  &#{$base-class}--solid {
+    @include button-foreground-color(var(--COLOR-INVERT));
+    @include button-focused {
+      background-color: var(--COLOR-DARK);
+      border-color: var(--COLOR-DARK);
+    }
+    background-color: var(--COLOR);
+    border-color: var(--COLOR);
+
+    &#{$base-class}--negative {
+      @include button-foreground-color(var(--COLOR));
+      @include button-focused {
+        background-color: var(--COLOR-LIGHT);
+        border-color: var(--COLOR-LIGHT);
+      }
+      background-color: var(--COLOR-INVERT);
+      border-color: var(--COLOR-INVERT);
+    }
+  }
+
+  &#{$base-class}--outline,
+  &#{$base-class}--flat {
+    @include button-foreground-color(var(--COLOR));
+    @include button-focused {
+      background-color: var(--COLOR-LIGHT);
+    }
+    background: none;
+    border-color: var(--COLOR);
+
+    &#{$base-class}--negative {
+      @include button-foreground-color(var(--COLOR-INVERT));
+      @include button-focused {
+        background-color: var(--COLOR-DARK);
+      }
+      background-color: none;
+      border-color: var(--COLOR-INVERT);
+    }
+  }
+
+  &#{$base-class}--flat {
+    border: 0;
+  }
+
+  // End of Types and colors
 
   &--solid {
     &#{$base-class}--primary {
