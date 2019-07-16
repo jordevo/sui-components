@@ -1,0 +1,121 @@
+@import '~@schibstedspain/sui-theme/lib/index';
+
+$fz-atom-popover: $fz-s !default;
+$bdc-atom-popover-arrow: #c8c8c8 !default;
+$bdc-atom-popover: $c-black !default;
+$c-atom-popover: #535353 !default;
+$bgc-atom-popover: $c-white !default;
+$bdw-atom-popover: 1px !default;
+$p-atom-popover: $p-l !default;
+$maw-atom-popover: 480px !default;
+$miw-atom-popover: 150px !default;
+
+$w-atom-popover-arrow: .8rem !default;
+$h-atom-popover-arrow: .4rem !default;
+$c-atom-popover-arrow: $c-black !default;
+
+/* class names */
+$base-class: '.sui-AtomPopover';
+$class-inner: '#{$base-class}-inner';
+$class-arrow: '#{$base-class}-arrow';
+$class-target: '#{$base-class}-target';
+$class-body: '#{$base-class}-body';
+
+#{$class-target} {
+  cursor: pointer;
+}
+
+#{$base-class} {
+  z-index: 1000;
+  
+  #{$class-inner} {
+    background-color: $bgc-atom-popover;
+    border-color: $bdc-atom-popover;
+    border-style: solid;
+    border-width: $bdw-atom-popover;
+    color: $c-atom-popover;
+    font-size: $fz-atom-popover;
+    max-height: inherit;
+    max-width: $maw-atom-popover;
+    min-width: $miw-atom-popover;
+    padding: $p-atom-popover;
+  }
+
+  #{$class-body} {
+    height: 100%;
+  }
+
+  #{$class-arrow} {
+    display: block;
+    height: $h-atom-popover-arrow;
+    position: absolute;
+    width: $w-atom-popover-arrow;
+
+    &::before {
+      border-color: transparent;
+      border-style: solid;
+      content: '';
+      position: absolute;
+    }
+
+    &::after {
+      border-color: $bdc-atom-popover;
+      border-style: solid;
+      content: '';
+      position: absolute;
+    }
+    
+  }
+  
+  &#{$base-class}--top {
+    #{$class-arrow} {
+      &::after {
+        border-top-color: $bgc-atom-popover;
+        border-width: $h-atom-popover-arrow ($w-atom-popover-arrow / 2) 0;
+        top: -1px;
+      }
+    }
+  }
+
+  &#{$base-class}--right {
+    #{$class-arrow} {
+      &::after {
+        border-right-color: $bgc-atom-popover;
+        border-width: ($w-atom-popover-arrow / 2) $h-atom-popover-arrow
+          ($w-atom-popover-arrow / 2) 0;
+        right: -1px;
+      }
+    }
+  }
+
+  &#{$base-class}--bottom {
+    #{$class-arrow} {
+      top: -6px;
+
+      &::after {
+        border-bottom-color: $bgc-atom-popover;
+        border-width: 0 ($w-atom-popover-arrow / 2) $h-atom-popover-arrow;
+        bottom: -1px;
+      }
+
+      &::before {
+        border-bottom-color: white;
+        border-width: 0 ($w-atom-popover-arrow / 2) $h-atom-popover-arrow;
+        bottom: -2px;
+        z-index: 10;
+      }
+    }
+  }
+  
+  &#{$base-class}--left {
+
+    #{$class-arrow} {
+      &::after {
+        border-left-color: $bgc-atom-popover;
+        border-width: ($w-atom-popover-arrow / 2) 0 ($w-atom-popover-arrow / 2)
+            $h-atom-popover-arrow;
+        left: -1px;
+      }
+    }
+  }
+}

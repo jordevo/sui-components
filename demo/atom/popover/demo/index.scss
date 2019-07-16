@@ -1,0 +1,77 @@
+%placement-item {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  position: absolute;
+}
+
+%placement-item-horizontal {
+  @extend %placement-item;
+  align-self: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+%placement-item-vertical {
+  @extend %placement-item;
+  width: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+.DemoAtomPopover {
+  padding: 20px;
+
+  &-option {
+    border: 1px dotted gray;
+    background: white;
+    width: 300px;
+  }
+
+  &-section {
+    margin: 10px;
+  }
+
+  &-display {
+    background: #fff;
+    border: 1px solid #CCC;
+    margin-top: 10px;
+    padding: 10px;
+  }
+
+  pre {
+    padding: 16px;
+    width: 300px;
+  }
+
+  &-placement {
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 20px auto;
+    max-width: 400px;
+    min-height: 400px;
+    padding: 10px;
+    position: relative;
+    &-top {
+      @extend %placement-item-vertical;
+      top: 0;
+      z-index: 10;
+    }  
+    &-right {
+      @extend %placement-item-horizontal;
+      right: 0;
+    }
+    &-bottom {
+      @extend %placement-item-vertical;
+      bottom: 0;
+    }
+    &-left {
+      @extend %placement-item-horizontal;
+      left: 0;
+    }
+  }
+}
