@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[245],{C7Y7:function(n,i){n.exports="return (\n  <BehaviorSticky>\n    <h1>Sticky</h1>\n  </BehaviorSticky>\n)"}}]);
